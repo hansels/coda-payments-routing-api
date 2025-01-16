@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "bc2e9abd-d5e0-48c5-b285-51be73b1ed85",
+		"name": "Coda Payment - Routing API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7439282",
+		"_collection_link": "https://mts-studio.postman.co/workspace/MTS-Studio~9bc54935-4a36-448a-9ee2-2b2bae5e7758/collection/7439282-bc2e9abd-d5e0-48c5-b285-51be73b1ed85?action=share&source=collection_link&creator=7439282"
+	},
+	"item": [
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/ping",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Self",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"game\":\"Mobile Legends\", \n    \"gamerID\":\"GYUTDTE\",\n    \"points\":20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/self",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"self"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[URL] Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"http://localhost:3005\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[URL] Unregister",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"http://localhost:3004\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/unregister",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"unregister"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
