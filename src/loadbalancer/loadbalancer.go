@@ -11,6 +11,7 @@ import (
 
 type Server struct {
 	URL     *url.URL
+	counter int
 	healthy bool
 }
 
@@ -89,6 +90,7 @@ func (lb *LoadBalancer) healthCheck() {
 				server.healthy = false
 				log.Printf("Server %s is unhealthy", server.URL)
 			}
+			log.Printf("Server %s has been hit for %d times", server.URL, server.counter)
 		}
 
 		time.Sleep(30 * time.Second)
@@ -105,6 +107,7 @@ func (lb *LoadBalancer) getNextServer() *url.URL {
 		lb.current++
 		server := lb.servers[lb.current%len(lb.servers)]
 		if server.healthy {
+			server.counter++
 			return server.URL
 		}
 
