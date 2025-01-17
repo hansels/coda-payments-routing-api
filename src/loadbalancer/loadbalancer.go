@@ -42,6 +42,12 @@ func NewLoadBalancer(servers []string) *LoadBalancer {
 
 func (lb *LoadBalancer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	target := lb.getNextServer()
+	if target == nil {
+		http.Error(w, "No healthy servers available", http.StatusServiceUnavailable)
+		return
+	}
+
+	log.Printf("Forwarding request to %s", target)
 	proxy := httputil.NewSingleHostReverseProxy(target)
 	proxy.ServeHTTP(w, r)
 }
@@ -90,12 +96,19 @@ func (lb *LoadBalancer) healthCheck() {
 }
 
 func (lb *LoadBalancer) getNextServer() *url.URL {
+	count := 0
 	for {
+		if count >= len(lb.servers) {
+			return nil
+		}
+
 		lb.current++
 		server := lb.servers[lb.current%len(lb.servers)]
 		if server.healthy {
 			return server.URL
 		}
+
+		count++
 	}
 }
 
